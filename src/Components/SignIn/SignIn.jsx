@@ -1,24 +1,30 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./SignIn.css";
 import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
-const SignIn = () => {
+const SignIn = ({ setSignUp, signUp }) => {
+  const navigate = useNavigate();
+
   const emailRef = useRef(null);
   const PasswordRef = useRef(null);
 
-  const register = () => {
-    console.log("clicked");
+  const register2 = () => {
+    setSignUp(true);
+  };
+
+  const register = (e) => {
+    e.preventDefault();
     auth
       .createUserWithEmailAndPassword(
         emailRef.current.value,
         PasswordRef.current.value
       )
-      .then((authUser) => {
-        console.log(authUser);
-      })
+      .then((authUser) => {})
       .catch((error) => {
         alert(error.message);
       });
+    navigate("/");
   };
 
   const signIn = (e) => {
@@ -28,18 +34,36 @@ const SignIn = () => {
         emailRef.current.value,
         PasswordRef.current.value
       )
-      .then((authUser) => {
-        console.log(authUser);
-      })
+      .then((authUser) => {})
       .catch((error) => {
         alert(error.message);
       });
   };
 
-  return (
+  return signUp ? (
+    <div className="signUpScreen">
+      <form>
+        <h1>Sign Up</h1>
+        <h3>Create a password to start your membership</h3>
+        <p>That's it, you're done!. We hate paperwork, too.</p>
+        <input type="email" placeholder="Email" ref={emailRef} />
+        <input type="text" placeholder="Password" ref={PasswordRef} />
+        <button
+          type="submit"
+          onClick={(e) => {
+            register(e);
+          }}
+        >
+          Sign Up
+        </button>
+      </form>
+    </div>
+  ) : (
     <div className="signUpScreen">
       <form>
         <h1>Sign In</h1>
+        <h3>Welcome back!</h3>
+        <p>Enter your password and you'll be watching in no time.</p>
         <input type="email" placeholder="Email" ref={emailRef} />
         <input type="text" placeholder="Password" ref={PasswordRef} />
         <button type="submit" onClick={signIn}>
@@ -50,7 +74,7 @@ const SignIn = () => {
           <span
             className="SigUpScreen__link"
             onClick={() => {
-              register();
+              register2();
             }}
           >
             Sign up now.

@@ -23,7 +23,7 @@
 
 .signUpScreen > form > h1 {
   text-align: left;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .signUpScreen > form > h4 {
@@ -50,4 +50,14 @@
 .SigUpScreen__link:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.signUpScreen > form > h3 {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.signUpScreen > form > p {
+  text-align: left;
+  margin-bottom: 15px;
 }

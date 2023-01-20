@@ -1,34 +1,44 @@
 import React, { useEffect, useState } from "react";
 import "./PlansScreen.css";
+import Plans from "./Plans";
 
 const PlansScreen = () => {
-  const [subscrition, setSubscrition] = useState();
+  const [subscrition, setSubscrition] = useState(null);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const mode = window.localStorage.getItem("id");
+    setSubscrition(mode);
+  }, []);
+
+  const ChangeCurrentPlan = (id) => {
+    setSubscrition(id);
+    window.localStorage.setItem("id", id);
+  };
 
   return (
     <div className="plansScreen">
-      <div className="plansScreen__plan">
-        <div className="plansScreen___info">
-          <h5>Basic Plan</h5>
-          <h6>720p</h6>
-        </div>
-        <button>Subscribe</button>
-      </div>
-      <div className="plansScreen__plan">
-        <div className="plansScreen___info">
-          <h5>Standard Plan</h5>
-          <h6>1080p</h6>
-        </div>
-        <button>Subscribe</button>
-      </div>
-      <div className="plansScreen__plan">
-        <div className="plansScreen___info">
-          <h5>Premium Plan</h5>
-          <h6>4K + HDR</h6>
-        </div>
-        <button>Subscribe</button>
-      </div>
+      {Plans.map((plan) => {
+        return (
+          <div
+            className={`plansScreen__plan ${
+              subscrition == plan.id && "CurrentPlan"
+            }`}
+            key={plan.id}
+          >
+            <div className="plansScreen___info">
+              <h5>{plan.Name}</h5>
+              <h6>{plan.quality}</h6>
+            </div>
+            <button
+              onClick={() => {
+                ChangeCurrentPlan(plan.id);
+              }}
+            >
+              {subscrition === plan.id ? "Current plan" : "Subscribe"}
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 };

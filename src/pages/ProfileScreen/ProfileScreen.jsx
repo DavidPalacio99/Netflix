@@ -5,13 +5,15 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../features/counter/userSlice";
 import { auth } from "../../firebase";
 import PlansScreen from "../../Components/PlansScreen/PlansScreen";
+import { useNavigate } from "react-router-dom";
 
 const ProfileScreen = () => {
   const user = useSelector(selectUser);
+  const navigate = useNavigate();
 
   return (
     <div className="profileScreen">
-      <Navbar />
+      <Navbar profile />
       <div className="profileScreen__body">
         <h1>Edit profile</h1>
         <div className="profileScreen__info">
@@ -20,13 +22,14 @@ const ProfileScreen = () => {
             alt=""
           />
           <div className="profileScreen__details">
-            <h2>{user.email}</h2>
+            <h2>{`${user.email}`}</h2>
             <div className="profileScreen__plans">
               <h3>Plans</h3>
               <PlansScreen />
               <button
                 onClick={() => {
                   auth.signOut();
+                  navigate("/");
                 }}
                 className="profileScreen__signOut"
               >

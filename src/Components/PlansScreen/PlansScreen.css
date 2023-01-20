@@ -18,3 +18,11 @@
   border: none;
   cursor: pointer;
 }
+
+.CurrentPlan > button {
+  background-color: gray;
+}
+
+.plansScreen__plan.CurrentPlan {
+  opacity: 1;
+}

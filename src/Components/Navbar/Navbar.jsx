@@ -3,7 +3,7 @@ import "./Nav.css";
 import netflix from "../../assets/netflix.png";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ profile }) => {
   const [show, handleShow] = useState(false);
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const Navbar = () => {
         />
         <img
           onClick={() => {
-            return navigate("/profile");
+            profile ? navigate("/") : navigate("/profile");
           }}
           className="nav__avatar"
           src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"

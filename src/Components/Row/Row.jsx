@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Row.css";
 import axios from "../../services/axios";
+import flechaIz from "../../assets/izquierda.png";
+import flechaDer from "../../assets/derecha.png";
+import Modal from "../../pages/Modal/Modal";
 
-const Row = ({ title, fetchUrl, isLargeRow = false }) => {
+const Row = ({ title, fetchUrl, fetchUrl2, isLargeRow = false }) => {
   const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState({});
+  const refContainer = useRef(null);
+  const [closeModal, setCloseModal] = useState(true);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
 
@@ -14,15 +20,53 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
       return request;
     }
 
+    // async function fetchData2() {
+    //   const request = await axios.get(fetchUrl2);
+    //   setMovies((prev) => {
+    //     return [...prev, ...request.data.results];
+    //   });
+    //   return request;
+    // }
+
     fetchData();
+    // fetchData2();
   }, [fetchUrl]);
+
+  const modal = (id) => {
+    console.log(id);
+    setCloseModal(false);
+    const peli = movies.filter((movie) => {
+      return movie.id === id;
+    });
+    setMovie(...peli);
+  };
 
   console.log(movies);
 
   return (
     <div className="row">
       <h2>{title}</h2>
-      <div className="row__posters">
+      {/* <button
+        onClick={() => {
+          setCloseModal(false);
+        }}
+      >
+        Open modal
+      </button> */}
+      <Modal
+        setCloseModal={setCloseModal}
+        closeModal={closeModal}
+        movie={movie}
+      />
+      <div className="row__posters" ref={refContainer}>
+        <img
+          src={flechaIz}
+          className="controlPrev izq"
+          alt=""
+          onClick={() => {
+            refContainer.current.scrollLeft -= 300;
+          }}
+        />
         {movies.map((movie) => {
           return (
             ((isLargeRow && movie.poster_path) ||
@@ -34,10 +78,21 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
                   isLargeRow ? movie.poster_path : movie.backdrop_path
                 }`}
                 alt={movie.name}
+                onClick={() => {
+                  modal(movie.id);
+                }}
               />
             )
           );
         })}
+        <img
+          src={flechaDer}
+          className="controlPrev der"
+          alt=""
+          onClick={() => {
+            refContainer.current.scrollLeft += 300;
+          }}
+        />
       </div>
     </div>
   );

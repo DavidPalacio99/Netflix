@@ -9,7 +9,6 @@ const Banner = () => {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(requests.fetchNetflixOriginals);
-      console.log(request);
       setMovie(request.data.results[Math.floor(Math.random() * 19)]);
 
       return request;
@@ -17,8 +16,6 @@ const Banner = () => {
 
     fetchData();
   }, []);
-
-  console.log(movie);
 
   const truncate = (string, n) => {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
