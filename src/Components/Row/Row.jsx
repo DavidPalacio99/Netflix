@@ -5,11 +5,18 @@ import flechaIz from "../../assets/izquierda.png";
 import flechaDer from "../../assets/derecha.png";
 import Modal from "../../pages/Modal/Modal";
 
-const Row = ({ title, fetchUrl, fetchUrl2, isLargeRow = false }) => {
+const Row = ({
+  title,
+  fetchUrl,
+  fetchUrl2,
+  isCategory,
+  isLargeRow = false,
+}) => {
   const [movies, setMovies] = useState([]);
   const [movie, setMovie] = useState({});
   const refContainer = useRef(null);
   const [closeModal, setCloseModal] = useState(true);
+  console.log(fetchUrl2, "holaa");
 
   const base_url = "https://image.tmdb.org/t/p/original/";
 
@@ -20,17 +27,19 @@ const Row = ({ title, fetchUrl, fetchUrl2, isLargeRow = false }) => {
       return request;
     }
 
-    // async function fetchData2() {
-    //   const request = await axios.get(fetchUrl2);
-    //   setMovies((prev) => {
-    //     return [...prev, ...request.data.results];
-    //   });
-    //   return request;
-    // }
+    async function fetchData2() {
+      const request = await axios.get(fetchUrl2);
+      setMovies((prev) => {
+        return [...prev, ...request.data.results];
+      });
+      return request;
+    }
 
     fetchData();
-    // fetchData2();
-  }, [fetchUrl]);
+    if (fetchUrl2) {
+      fetchData2();
+    }
+  }, [fetchUrl, fetchUrl2]);
 
   const modal = (id) => {
     console.log(id);
@@ -46,22 +55,18 @@ const Row = ({ title, fetchUrl, fetchUrl2, isLargeRow = false }) => {
   return (
     <div className="row">
       <h2>{title}</h2>
-      {/* <button
-        onClick={() => {
-          setCloseModal(false);
-        }}
-      >
-        Open modal
-      </button> */}
       <Modal
         setCloseModal={setCloseModal}
         closeModal={closeModal}
         movie={movie}
       />
-      <div className="row__posters" ref={refContainer}>
+      <div
+        className={`${isCategory ? "isCategory" : "row__posters"}`}
+        ref={refContainer}
+      >
         <img
           src={flechaIz}
-          className="controlPrev izq"
+          className={`controlPrev izq ${isCategory && "category"}`}
           alt=""
           onClick={() => {
             refContainer.current.scrollLeft -= 300;
@@ -87,7 +92,7 @@ const Row = ({ title, fetchUrl, fetchUrl2, isLargeRow = false }) => {
         })}
         <img
           src={flechaDer}
-          className="controlPrev der"
+          className={`controlPrev der ${isCategory && "category"}`}
           alt=""
           onClick={() => {
             refContainer.current.scrollLeft += 300;

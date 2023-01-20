@@ -7,6 +7,7 @@ import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, login, selectUser } from "./features/counter/userSlice";
 import ProfileScreen from "./pages/ProfileScreen/ProfileScreen";
+import Categories from "./pages/Categories/Categories";
 
 function App() {
   const user = useSelector(selectUser);
@@ -36,6 +37,54 @@ function App() {
         <Routes>
           <Route exact path="/profile" element={<ProfileScreen />} />
           <Route exact path="/" element={<HomeScreen />} />
+          <Route
+            exact
+            path="/categories/originals"
+            element={
+              <Categories
+                category={"fetchNetflixOriginals"}
+                title={"Netflix originals"}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/categories/top_rated"
+            element={
+              <Categories category={"fetchTopRated"} title={"Top rated"} />
+            }
+          />
+          <Route
+            exact
+            path="/categories/trending"
+            element={
+              <Categories
+                category={"fetchTrending"}
+                title={"Trending"}
+                fetch2={"fetchTrending2"}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/categories/horror"
+            element={
+              <Categories
+                category={"fetchHorrorMovies"}
+                title={"Horror movies"}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/categories/romance"
+            element={
+              <Categories
+                category={"fetchRomanceMovies"}
+                title={"Romance movies"}
+              />
+            }
+          />
         </Routes>
       )}
     </div>

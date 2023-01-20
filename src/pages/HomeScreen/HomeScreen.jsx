@@ -4,6 +4,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Banner from "../../Components/Banner/Banner";
 import requests from "../../services/requests";
 import Row from "../../Components/Row/Row";
+
 const HomeScreen = () => {
   return (
     <div className="homeScreeen">
@@ -19,7 +20,7 @@ const HomeScreen = () => {
         fetchUrl={requests.fetchTrending}
         isLargeRow
       />
-      <Row title="Top rated" fetchUrl={requests.fetchTopRated} isLargeRow />
+      {/* <Row title="Top rated" fetchUrl={requests.fetchTopRated} isLargeRow />
       <Row
         title="Action movies"
         fetchUrl={requests.fetchActionMovies}
@@ -39,7 +40,7 @@ const HomeScreen = () => {
         title="Documentaries"
         fetchUrl={requests.fetchDocumentaries}
         isLargeRow
-      />
+      /> */}
       {/* <Row
         title="All"
         fetchUrl={requests.fetchAll}

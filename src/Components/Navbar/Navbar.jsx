@@ -33,6 +33,43 @@ const Navbar = ({ profile }) => {
             navigate("/");
           }}
         />
+        <div className={`nav__Categories ${show && "nav__Cat"}`}>
+          <h3
+            onClick={() => {
+              navigate("categories/originals");
+            }}
+          >
+            Originals
+          </h3>
+          <h3
+            onClick={() => {
+              navigate("categories/trending");
+            }}
+          >
+            Trending
+          </h3>
+          <h3
+            onClick={() => {
+              navigate("categories/top_rated");
+            }}
+          >
+            Top rated
+          </h3>
+          <h3
+            onClick={() => {
+              navigate("categories/horror");
+            }}
+          >
+            Horror movies
+          </h3>
+          <h3
+            onClick={() => {
+              navigate("categories/romance");
+            }}
+          >
+            Romance movies
+          </h3>
+        </div>
         <img
           onClick={() => {
             profile ? navigate("/") : navigate("/profile");

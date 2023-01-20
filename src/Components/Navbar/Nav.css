@@ -38,3 +38,23 @@
   height: 30px;
   cursor: pointer;
 }
+
+.nav__Categories {
+  display: flex;
+  width: 40%;
+  /* border: 1px solid red; */
+  justify-content: center;
+  color: #fff;
+  align-items: center;
+  display: none;
+  margin-left: 110px;
+}
+
+.nav__Cat {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav__Categories > h3 {
+  cursor: pointer;
+}
