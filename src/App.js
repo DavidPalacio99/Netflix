@@ -26,7 +26,10 @@ function App() {
         dispatch(logout());
       }
     });
-    return unsuscribe;
+
+    return () => {
+      unsuscribe();
+    };
   }, [dispatch]);
 
   return (
@@ -34,58 +37,46 @@ function App() {
       {!user ? (
         <LoginScreen />
       ) : (
-        <Routes>
-          <Route exact path="/profile" element={<ProfileScreen />} />
-          <Route exact path="/" element={<HomeScreen />} />
-          <Route
-            exact
-            path="/categories/originals"
-            element={
-              <Categories
-                category={"fetchNetflixOriginals"}
-                title={"Netflix originals"}
-              />
-            }
-          />
-          <Route
-            exact
-            path="/categories/top_rated"
-            element={
-              <Categories category={"fetchTopRated"} title={"Top rated"} />
-            }
-          />
-          <Route
-            exact
-            path="/categories/trending"
-            element={
-              <Categories
-                category={"fetchTrending"}
-                title={"Trending"}
-                fetch2={"fetchTrending2"}
-              />
-            }
-          />
-          <Route
-            exact
-            path="/categories/horror"
-            element={
-              <Categories
-                category={"fetchHorrorMovies"}
-                title={"Horror movies"}
-              />
-            }
-          />
-          <Route
-            exact
-            path="/categories/romance"
-            element={
-              <Categories
-                category={"fetchRomanceMovies"}
-                title={"Romance movies"}
-              />
-            }
-          />
-        </Routes>
+        <>
+          <Routes>
+            <Route exact path="/profile" element={<ProfileScreen />} />
+            <Route exact path="/" element={<HomeScreen />} />
+            <Route
+              exact
+              path="/categories/originals"
+              element={
+                <Categories
+                  category={"fetchNetflixOriginals"}
+                  title={"Netflix originals"}
+                />
+              }
+            />
+            <Route
+              exact
+              path="/categories/top_rated"
+              element={
+                <Categories category={"fetchTopRated"} title={"Top rated"} />
+              }
+            />
+            <Route
+              exact
+              path="/categories/trending"
+              element={
+                <Categories category={"fetchTrending"} title={"Trending"} />
+              }
+            />
+            <Route
+              exact
+              path="/categories/horror"
+              element={
+                <Categories
+                  category={"fetchHorrorMovies"}
+                  title={"Horror movies"}
+                />
+              }
+            />
+          </Routes>
+        </>
       )}
     </div>
   );

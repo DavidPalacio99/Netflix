@@ -3,7 +3,7 @@ import "./Banner.css";
 import axios from "../../services/axios";
 import requests from "../../services/requests";
 
-const Banner = () => {
+const Banner = ({ ref }) => {
   const [movie, setMovie] = useState([]);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const Banner = () => {
 
   return (
     <header
+      ref={ref}
       className="banner"
       style={{
         backgroundSize: "cover",

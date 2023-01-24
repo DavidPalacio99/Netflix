@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./HomeScreen.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import Banner from "../../Components/Banner/Banner";
 import requests from "../../services/requests";
 import Row from "../../Components/Row/Row";
+import Loading from "../../Components/loading/Loading";
 
 const HomeScreen = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
+
   return (
     <div className="homeScreeen">
-      <Navbar />
+      <Navbar isHomeScreen />
       <Banner />
+      {loading && <Loading />}
       <Row
         title="Netflix originals"
         fetchUrl={requests.fetchNetflixOriginals}

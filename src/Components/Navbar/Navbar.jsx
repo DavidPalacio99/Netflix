@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Nav.css";
 import netflix from "../../assets/netflix.png";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Navbar = ({ profile }) => {
+const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
+  if (!isHomeScreen) {
+  }
   const [show, handleShow] = useState(false);
   const navigate = useNavigate();
+  const referencia = useRef();
 
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
@@ -23,7 +27,7 @@ const Navbar = ({ profile }) => {
   }, []);
 
   return (
-    <div className={`nav ${show && "nav__black"}`}>
+    <div className={`nav ${show && "nav__black"}`} ref={referencia}>
       <div className="nav__contents">
         <img
           src={netflix}
@@ -31,43 +35,61 @@ const Navbar = ({ profile }) => {
           className="nav__logo"
           onClick={() => {
             navigate("/");
+            window.scrollTo(0, 0);
           }}
         />
         <div className={`nav__Categories ${show && "nav__Cat"}`}>
           <h3
             onClick={() => {
-              navigate("categories/originals");
+              if (!isHomeScreen) {
+                setReset((prev) => !prev);
+                setLoading(true);
+                window.scrollTo(0, 0);
+              }
             }}
           >
-            Originals
+            <Link className="links" to={"/categories/originals"}>
+              Originals
+            </Link>
           </h3>
           <h3
             onClick={() => {
-              navigate("categories/trending");
+              if (!isHomeScreen) {
+                setReset((prev) => !prev);
+                setLoading(true);
+                window.scrollTo(0, 0);
+              }
             }}
           >
-            Trending
+            <Link className="links" to={"/categories/trending"}>
+              Trending
+            </Link>
           </h3>
           <h3
             onClick={() => {
-              navigate("categories/top_rated");
+              if (!isHomeScreen) {
+                setReset((prev) => !prev);
+                setLoading(true);
+                window.scrollTo(0, 0);
+              }
             }}
           >
-            Top rated
+            <Link className="links" to={"/categories/top_rated"}>
+              top rated
+            </Link>
           </h3>
           <h3
             onClick={() => {
-              navigate("categories/horror");
+              if (!isHomeScreen) {
+                setReset((prev) => !prev);
+                setLoading(true);
+                window.scrollTo(0, 0);
+              }
             }}
           >
-            Horror movies
-          </h3>
-          <h3
-            onClick={() => {
-              navigate("categories/romance");
-            }}
-          >
-            Romance movies
+            <Link className="links" to={"/categories/horror"}>
+              Horror movies
+            </Link>
           </h3>
         </div>
         <img

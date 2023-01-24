@@ -1,27 +1,65 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Categories.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import Banner from "../../Components/Banner/Banner";
-import requests from "../../services/requests";
 import Row from "../../Components/Row/Row";
+import Loading from "../../Components/loading/Loading";
+import { peticiones } from "../../services/requests";
 
-const Categories = ({ category, title, fetch2 }) => {
-  const fetchUrl = requests[category];
-  const fetch22 = requests[fetch2] || false;
+const Categories = ({ category, title }) => {
+  const [reset, setReset] = useState(false);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
-  console.log(fetchUrl, "este");
+  const petciones = peticiones(page);
+  const fetchUrl = petciones[category];
+
+  const interceptorRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entries], observer) => {
+        const { isIntersecting } = entries;
+
+        if (isIntersecting) {
+          setPage((prev) => prev + 1);
+        }
+      },
+      { threshold: 1.0, root: null }
+    );
+
+    observer.observe(interceptorRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const loadingOff = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  };
+
+  loadingOff();
 
   return (
-    <div className="categories">
-      <Navbar />
+    <div className="categories" id="categories">
+      <Navbar setReset={setReset} setLoading={setLoading} />
       <Banner />
       <Row
+        setPage={setPage}
         title={title}
         fetchUrl={fetchUrl}
         isLargeRow
         isCategory
-        fetchUrl2={fetch22}
+        page={page}
+        reset={reset}
+        setLoading={setLoading}
       />
+      {loading && <Loading />}
+
+      <div className={"interceptor"} ref={interceptorRef}></div>
     </div>
   );
 };
