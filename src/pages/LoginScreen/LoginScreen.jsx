@@ -15,6 +15,7 @@ const LoginScreen = () => {
           alt=""
           onClick={() => {
             setSignIn(false);
+            setSignUp(false);
           }}
         />
         <button
@@ -26,7 +27,7 @@ const LoginScreen = () => {
         >
           Sign in
         </button>
-        <div className="loginScreen__body">
+        <div className={`loginScreen__body ${(signIn || signUp) && "body"}`}>
           {signIn ? (
             <SignIn setSignUp={setSignUp} signUp={signUp} />
           ) : (

@@ -10,6 +10,7 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
   const [show, handleShow] = useState(false);
   const navigate = useNavigate();
   const referencia = useRef();
+  const inputRef = useRef();
 
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
@@ -26,6 +27,13 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
     };
   }, []);
 
+  const submitForm = (e) => {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+    navigate(`/search/${e.target[0].value}`);
+    inputRef.current.value = "";
+  };
+
   return (
     <div className={`nav ${show && "nav__black"}`} ref={referencia}>
       <div className="nav__contents">
@@ -41,10 +49,10 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
         <div className={`nav__Categories ${show && "nav__Cat"}`}>
           <h3
             onClick={() => {
+              window.scrollTo(0, 0);
               if (!isHomeScreen) {
                 setReset((prev) => !prev);
                 setLoading(true);
-                window.scrollTo(0, 0);
               }
             }}
           >
@@ -54,10 +62,10 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
           </h3>
           <h3
             onClick={() => {
+              window.scrollTo(0, 0);
               if (!isHomeScreen) {
                 setReset((prev) => !prev);
                 setLoading(true);
-                window.scrollTo(0, 0);
               }
             }}
           >
@@ -67,10 +75,10 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
           </h3>
           <h3
             onClick={() => {
+              window.scrollTo(0, 0);
               if (!isHomeScreen) {
                 setReset((prev) => !prev);
                 setLoading(true);
-                window.scrollTo(0, 0);
               }
             }}
           >
@@ -80,10 +88,10 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
           </h3>
           <h3
             onClick={() => {
+              window.scrollTo(0, 0);
               if (!isHomeScreen) {
                 setReset((prev) => !prev);
                 setLoading(true);
-                window.scrollTo(0, 0);
               }
             }}
           >
@@ -92,8 +100,19 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
             </Link>
           </h3>
         </div>
+        <div className={`form ${!show && "form2"}`}>
+          <form onSubmit={submitForm}>
+            <input
+              className="input"
+              type={"text"}
+              placeholder={"Search a movie"}
+              ref={inputRef}
+            />
+          </form>
+        </div>
         <img
           onClick={() => {
+            window.scrollTo(0, 0);
             profile ? navigate("/") : navigate("/profile");
           }}
           className="nav__avatar"

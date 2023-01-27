@@ -26,15 +26,15 @@ const PlansScreen = () => {
             key={plan.id}
           >
             <div className="plansScreen___info">
-              <h5>{plan.Name}</h5>
-              <h6>{plan.quality}</h6>
+              <h4>{plan.Name}</h4>
+              <h5>{plan.quality}</h5>
             </div>
             <button
               onClick={() => {
                 ChangeCurrentPlan(plan.id);
               }}
             >
-              {subscrition === plan.id ? "Current plan" : "Subscribe"}
+              {subscrition === plan.id ? "Current plan" : "Suscribe"}
             </button>
           </div>
         );

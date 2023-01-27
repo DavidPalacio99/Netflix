@@ -12,7 +12,7 @@ const HomeScreen = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 2000);
   }, []);
 
   return (
@@ -30,7 +30,7 @@ const HomeScreen = () => {
         fetchUrl={requests.fetchTrending}
         isLargeRow
       />
-      {/* <Row title="Top rated" fetchUrl={requests.fetchTopRated} isLargeRow />
+      <Row title="Top rated" fetchUrl={requests.fetchTopRated} isLargeRow />
       <Row
         title="Action movies"
         fetchUrl={requests.fetchActionMovies}
@@ -41,7 +41,7 @@ const HomeScreen = () => {
         fetchUrl={requests.fetchHorrorMovies}
         isLargeRow
       />
-      <Row
+      {/* <Row
         title="Romance movies"
         fetchUrl={requests.fetchRomanceMovies}
         isLargeRow

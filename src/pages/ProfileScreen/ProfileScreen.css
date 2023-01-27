@@ -9,7 +9,18 @@
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 80px;
+  padding-top: 110px;
+  /* border: 1px solid red; */
+}
+
+@media (max-height: 700px) {
+  .profileScreen__body {
+    padding-top: 55px;
+  }
+
+  .profileScreen__body > h1 {
+    font-size: 20px;
+  }
 }
 
 .profileScreen__info {
@@ -53,6 +64,7 @@
   background-color: #e50914;
   cursor: pointer;
   border: none;
+  font-weight: 600;
 }
 
 .profileScreen__info > img {

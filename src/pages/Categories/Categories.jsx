@@ -10,6 +10,7 @@ const Categories = ({ category, title }) => {
   const [reset, setReset] = useState(false);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [keyword, setKeyword] = useState("");
 
   const petciones = peticiones(page);
   const fetchUrl = petciones[category];
@@ -45,7 +46,11 @@ const Categories = ({ category, title }) => {
 
   return (
     <div className="categories" id="categories">
-      <Navbar setReset={setReset} setLoading={setLoading} />
+      <Navbar
+        setReset={setReset}
+        setLoading={setLoading}
+        setKeyword={setKeyword}
+      />
       <Banner />
       <Row
         setPage={setPage}

@@ -13,7 +13,7 @@ const requests = {
   fetchDocumentaries: `discover/movie?api_key=${API_KEY}&page=${page}&with_genres=99`,
 };
 
-export const peticiones = (pagina) => {
+export const peticiones = (pagina, string) => {
   return {
     fetchTrending: `/trending/all/week?api_key=${API_KEY}&page=${pagina}&language=en-US`,
     fetchNetflixOriginals: `/discover/tv?api_key=${API_KEY}&page=${pagina}&with_networks=213`,
@@ -24,6 +24,7 @@ export const peticiones = (pagina) => {
     fetchHorrorMovies: `discover/movie?api_key=${API_KEY}&page=${pagina}&with_genres=27`,
     fetchRomanceMovies: `discover/movie?api_key=${API_KEY}&page=${pagina}&with_genres=10749`,
     fetchDocumentaries: `discover/movie?api_key=${API_KEY}&page=${pagina}&with_genres=99`,
+    searchMovies: `/search/movie?api_key=${API_KEY}&query=${string}&page=${pagina}`,
   };
 };
 

@@ -47,12 +47,12 @@ const Modal = ({ closeModal, setCloseModal, movie }) => {
             </Details>
             <ButtonActions>
               <Button isPrimary>
-                <BsFillPlayFill />
-                VER AHORA
+                {/* <BsFillPlayFill /> */}
+                Watch now
               </Button>
               <Button isPrimary>
-                <AiOutlinePlus />
-                VER DESPUÉS
+                {/* <AiOutlinePlus /> */}
+                Watch later
               </Button>
             </ButtonActions>
           </Content>
@@ -77,7 +77,7 @@ const Tag = styled.span`
 const StyledWrapper = styled.div`
   background: hsl(246, 24%, 7%, 0.92);
   position: fixed;
-  z-index: 2;
+  z-index: 100000000000;
   inset: 0;
 
   display: flex;
@@ -161,13 +161,13 @@ const Button = styled.button`
   padding: 0.625rem;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
-  colorÑ #fffñ
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border-radius: 4px;
 
   background: ${({ isPrimary }) => (isPrimary ? "#e50914" : "transparent")};
   border: 1px solid #e50914;

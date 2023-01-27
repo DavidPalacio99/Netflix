@@ -26,3 +26,7 @@
 .plansScreen__plan.CurrentPlan {
   opacity: 1;
 }
+
+.plansScreen___info > h6 {
+  font-weight: 600;
+}

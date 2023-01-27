@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, login, selectUser } from "./features/counter/userSlice";
 import ProfileScreen from "./pages/ProfileScreen/ProfileScreen";
 import Categories from "./pages/Categories/Categories";
+import Footer from "./Components/Footer/Footer";
+import Search from "./Components/Search/Search";
 
 function App() {
   const user = useSelector(selectUser);
@@ -75,7 +77,9 @@ function App() {
                 />
               }
             />
+            <Route path="/search/:keyword" element={<Search />} />
           </Routes>
+          <Footer />
         </>
       )}
     </div>
