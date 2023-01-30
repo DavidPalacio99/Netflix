@@ -9,6 +9,7 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
   }
   const [show, handleShow] = useState(false);
   const navigate = useNavigate();
+  const [width, setWidth] = useState(window.innerWidth);
   const referencia = useRef();
   const inputRef = useRef();
 
@@ -19,6 +20,12 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
       handleShow(false);
     }
   };
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWidth(window.innerWidth);
+    });
+  });
 
   useEffect(() => {
     window.addEventListener("scroll", transitionNavBar);
@@ -35,7 +42,7 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
   };
 
   return (
-    <div className={`nav ${show && "nav__black"}`} ref={referencia}>
+    <div className={`nav ${show && "nav__black"} `} ref={referencia}>
       <div className="nav__contents">
         <img
           src={netflix}
@@ -46,7 +53,11 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
             window.scrollTo(0, 0);
           }}
         />
-        <div className={`nav__Categories ${show && "nav__Cat"}`}>
+        <div
+          className={`nav__Categories ${show && "nav__Cat"} ${
+            width < 720 && "form3"
+          }`}
+        >
           <h3
             onClick={() => {
               window.scrollTo(0, 0);
@@ -100,7 +111,7 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
             </Link>
           </h3>
         </div>
-        <div className={`form ${!show && "form2"}`}>
+        <div className={`form ${!show && "form2"} ${width < 1000 && "form3"}`}>
           <form onSubmit={submitForm}>
             <input
               className="input"

@@ -1,6 +1,7 @@
 .profileScreen {
   height: 100vh;
   color: #fff;
+  overflow: hidden;
 }
 
 .profileScreen__body {
@@ -11,6 +12,13 @@
   margin-right: auto;
   padding-top: 110px;
   /* border: 1px solid red; */
+}
+
+@media (max-width: 550px) {
+  .profileScreen__body {
+    margin-left: 20px;
+    margin-right: 0;
+  }
 }
 
 @media (max-height: 700px) {
@@ -36,6 +44,13 @@
   font-weight: 400;
   border-bottom: 1px solid #282c2d;
   margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  .profileScreen__body > h1 {
+    font-size: 30px;
+    padding-top: 50px;
+  }
 }
 
 .profileScreen__info {

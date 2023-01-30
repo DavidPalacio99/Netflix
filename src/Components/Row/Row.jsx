@@ -18,8 +18,15 @@ const Row = ({
   const [movie, setMovie] = useState({});
   const refContainer = useRef(null);
   const [closeModal, setCloseModal] = useState(true);
+  const [isMovile, setIsMovile] = useState(window.innerWidth);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setIsMovile(window.innerWidth);
+    });
+  });
 
   useEffect(() => {
     setMovies([]);
@@ -69,7 +76,9 @@ const Row = ({
       >
         <img
           src={flechaIz}
-          className={`controlPrev izq ${isCategory && "category"}`}
+          className={`controlPrev izq ${isCategory && "category"} ${
+            isMovile < 1000 && "movile"
+          }`}
           alt=""
           onClick={() => {
             refContainer.current.scrollLeft -= 300;
@@ -101,7 +110,9 @@ const Row = ({
         })}
         <img
           src={flechaDer}
-          className={`controlPrev der ${isCategory && "category"}`}
+          className={`controlPrev der ${isCategory && "category"} ${
+            isMovile < 1000 && "movile"
+          }`}
           alt=""
           onClick={() => {
             refContainer.current.scrollLeft += 300;

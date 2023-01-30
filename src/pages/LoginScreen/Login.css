@@ -17,6 +17,12 @@
   z-index: 1000000;
 }
 
+@media (max-width: 600px) {
+  .loginScreen__logo {
+    width: 100px;
+  }
+}
+
 .loginScreen__button {
   position: fixed;
   right: 20px;
@@ -29,6 +35,13 @@
   font-weight: 600;
   border: none;
   z-index: 1000000;
+}
+
+@media (max-width: 600px) {
+  .loginScreen__button {
+    font-size: 0.8rem;
+    top: 10px;
+  }
 }
 
 .loginScreen__gradient {
@@ -60,11 +73,17 @@
   /* border: 1px solid red; */
 }
 
+@media (max-width: 550px) {
+  .loginScreen__body {
+    margin-top: 45px;
+  }
+}
+
 .body {
   top: 20%;
 }
 
-@media (max-height: 700px) {
+@media (max-width: 700px) {
   .body {
     top: 5%;
   }
@@ -75,15 +94,33 @@
   margin-bottom: 20px;
 }
 
+@media (max-width: 550px) {
+  .loginScreen__body > h1 {
+    font-size: 2rem;
+  }
+}
+
 .loginScreen__body > h2 {
   font-size: 2rem;
   font-weight: 400;
   margin-bottom: 30px;
 }
 
+@media (max-width: 550px) {
+  .loginScreen__body > h2 {
+    font-size: 1.5rem;
+  }
+}
+
 .loginScreen__body > h3 {
   font-size: 1.3rem;
   font-weight: 400;
+}
+
+@media (max-width: 550px) {
+  .loginScreen__body > h3 {
+    font-size: 0.9rem;
+  }
 }
 
 .loginScreen__input > form > input {

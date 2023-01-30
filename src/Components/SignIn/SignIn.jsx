@@ -47,7 +47,7 @@ const SignIn = ({ setSignUp, signUp }) => {
         <h3>Create a password to start your membership</h3>
         <p>That's it, you're done!. We hate paperwork, too.</p>
         <input type="email" placeholder="Email" ref={emailRef} />
-        <input type="text" placeholder="Password" ref={PasswordRef} />
+        <input type="password" placeholder="Password" ref={PasswordRef} />
         <button
           type="submit"
           onClick={(e) => {
@@ -65,7 +65,7 @@ const SignIn = ({ setSignUp, signUp }) => {
         <h3>Welcome back!</h3>
         <p>Enter your password and you'll be watching in no time.</p>
         <input type="email" placeholder="Email" ref={emailRef} />
-        <input type="text" placeholder="Password" ref={PasswordRef} />
+        <input type="password" placeholder="Password" ref={PasswordRef} />
         <button type="submit" onClick={signIn}>
           Sign In
         </button>
