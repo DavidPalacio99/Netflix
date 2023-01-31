@@ -2,12 +2,8 @@
   position: fixed;
   top: 0;
   padding: 20px;
-
   height: 30px;
   z-index: 1000000;
-
-  /* Animations  */
-
   transition-timing-function: ease-in;
   transition: all 0.5s;
 }
@@ -15,6 +11,29 @@
 .nav__contents {
   display: flex;
   justify-content: space-between;
+  position: relative;
+}
+
+.options {
+  color: #fff;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 60px;
+  /* border: 1px solid red; */
+  background: black;
+  padding-bottom: 20px;
+}
+
+.options > h3 {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.options > h2 {
+  margin-left: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .nav__black {
@@ -102,4 +121,12 @@
 
 .form3 {
   display: none;
+}
+
+.icon {
+  position: fixed;
+  top: 16px;
+  right: 70px;
+  cursor: pointer;
+  /* border: 1px solid red; */
 }

@@ -17,6 +17,7 @@
   font-weight: 600;
   border: none;
   cursor: pointer;
+  max-width: 110px;
 }
 
 .CurrentPlan > button {

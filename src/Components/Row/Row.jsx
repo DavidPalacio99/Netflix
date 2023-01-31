@@ -28,6 +28,8 @@ const Row = ({
     });
   });
 
+  console.log(movies);
+
   useEffect(() => {
     setMovies([]);
 

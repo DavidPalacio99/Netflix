@@ -26,6 +26,12 @@
   padding-right: 35px;
 }
 
+@media (max-width: 600px) {
+  .isCategory {
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  }
+}
+
 .row__poster {
   max-height: 100px;
   object-fit: contain;
@@ -46,6 +52,12 @@
 
 .row__posterLarge {
   max-height: 250px;
+}
+
+@media (max-width: 600px) {
+  .row__posterLarge {
+    max-height: 230px;
+  }
 }
 
 .row__posterLarge:hover {

@@ -3,11 +3,13 @@ import "./Nav.css";
 import netflix from "../../assets/netflix.png";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { BiMenu } from "react-icons/bi";
 
 const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
   if (!isHomeScreen) {
   }
   const [show, handleShow] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
   const referencia = useRef();
@@ -16,6 +18,7 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
       handleShow(true);
+      setShowOptions(false);
     } else {
       handleShow(false);
     }
@@ -25,6 +28,10 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
     window.addEventListener("resize", () => {
       setWidth(window.innerWidth);
     });
+
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
   });
 
   useEffect(() => {
@@ -130,7 +137,74 @@ const Navbar = ({ profile, setReset, isHomeScreen, setLoading }) => {
           src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
           alt=""
         />
+        {width < 720 && show && (
+          <BiMenu
+            size="40px"
+            color="white"
+            className="icon"
+            onClick={() => {
+              setShowOptions((prev) => !prev);
+            }}
+          />
+        )}
       </div>
+      {showOptions && show && (
+        <div className="options">
+          <h2>Categories</h2>
+          <h3
+            onClick={() => {
+              window.scrollTo(0, 0);
+              if (!isHomeScreen) {
+                setReset((prev) => !prev);
+                setLoading(true);
+              }
+            }}
+          >
+            <Link className="links" to={"/categories/originals"}>
+              Originals
+            </Link>
+          </h3>
+          <h3
+            onClick={() => {
+              window.scrollTo(0, 0);
+              if (!isHomeScreen) {
+                setReset((prev) => !prev);
+                setLoading(true);
+              }
+            }}
+          >
+            <Link className="links" to={"/categories/trending"}>
+              Trending
+            </Link>
+          </h3>
+          <h3
+            onClick={() => {
+              window.scrollTo(0, 0);
+              if (!isHomeScreen) {
+                setReset((prev) => !prev);
+                setLoading(true);
+              }
+            }}
+          >
+            <Link className="links" to={"/categories/top_rated"}>
+              top rated
+            </Link>
+          </h3>
+          <h3
+            onClick={() => {
+              window.scrollTo(0, 0);
+              if (!isHomeScreen) {
+                setReset((prev) => !prev);
+                setLoading(true);
+              }
+            }}
+          >
+            <Link className="links" to={"/categories/horror"}>
+              Horror movies
+            </Link>
+          </h3>
+        </div>
+      )}
     </div>
   );
 };

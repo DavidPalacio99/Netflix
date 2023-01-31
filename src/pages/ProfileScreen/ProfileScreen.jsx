@@ -6,10 +6,23 @@ import { selectUser } from "../../features/counter/userSlice";
 import { auth } from "../../firebase";
 import PlansScreen from "../../Components/PlansScreen/PlansScreen";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const ProfileScreen = () => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();
+  const [hide, setHide] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setHide(window.innerWidth);
+    });
+
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
+  }, []);
 
   return (
     <div className="profileScreen">
@@ -18,6 +31,7 @@ const ProfileScreen = () => {
         <h1>Edit profile</h1>
         <div className="profileScreen__info">
           <img
+            className={`${hide < 550 && "hide"}`}
             src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
             alt=""
           />

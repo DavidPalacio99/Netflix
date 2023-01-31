@@ -1,8 +1,6 @@
 import React from "react";
 import "./Modal.css";
 import styled from "styled-components";
-import { AiOutlinePlus } from "react-icons/ai";
-import { BsFillPlayFill } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import { genre } from "./genre";
 
@@ -14,6 +12,7 @@ const Modal = ({ closeModal, setCloseModal, movie }) => {
     genre_ids,
     first_air_date,
     release_date,
+    name,
   } = movie;
 
   const listGenders = genre.filter((gender) => genre_ids?.includes(gender.id));
@@ -26,14 +25,14 @@ const Modal = ({ closeModal, setCloseModal, movie }) => {
             <Thumbnail
               src={`https://image.tmdb.org/t/p/w500${poster_path}`}
               alt={title}
-              title={title}
+              title={title || name}
               width="220"
               height="330"
               loading="lazy"
             />
           </ThumbnailWrapper>
           <Content>
-            <Title>{title}</Title>
+            <Title>{title || name}</Title>
             <Overview>{overview}</Overview>
             <Details>
               <li>
