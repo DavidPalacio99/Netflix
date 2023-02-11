@@ -27,7 +27,7 @@ const LoginScreen = () => {
         >
           Sign in
         </button>
-        <div className={`loginScreen__body ${(signIn || signUp) && "body"}`}>
+        <div className={`loginScreen__body `}>
           {signIn ? (
             <SignIn setSignUp={setSignUp} signUp={signUp} />
           ) : (

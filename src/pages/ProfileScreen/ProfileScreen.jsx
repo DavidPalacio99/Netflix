@@ -31,7 +31,7 @@ const ProfileScreen = () => {
         <h1>Edit profile</h1>
         <div className="profileScreen__info">
           <img
-            className={`${hide < 550 && "hide"}`}
+            className={`${hide < 725 && "hide"}`}
             src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
             alt=""
           />

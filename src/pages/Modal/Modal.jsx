@@ -74,13 +74,11 @@ const Tag = styled.span`
   padding: 3px;
 `;
 const StyledWrapper = styled.div`
-  background: hsl(246, 24%, 7%, 0.92);
+  background-color: rgba(0, 0, 0, 0.85);
   position: fixed;
   z-index: 100000000000;
   inset: 0;
-
   display: flex;
-
   justify-content: center;
   align-items: center;
 `;
@@ -88,12 +86,14 @@ const StyledWrapper = styled.div`
 const Dialog = styled.div`
   position: relative;
   display: flex;
-
+  // border: 1px solid red;
+  max-width: 80vw;
+  overflow: scroll;
   gap: 2rem;
   padding: 0 1rem;
 
   flex-direction: column;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1100px) {
     flex-direction: row;
     max-width: 50%;
   }
@@ -180,8 +180,8 @@ const Button = styled.button`
 const ButtonClose = styled.button`
   cursor: pointer;
   position: absolute;
-  right: 32px;
-  top: -24px;
+  right: 10px;
+  top: 10px;
   font-size: 2rem;
   background: none;
   border: none;
