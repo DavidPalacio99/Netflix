@@ -88,7 +88,7 @@ const Dialog = styled.div`
   display: flex;
   // border: 1px solid red;
   max-width: 80vw;
-  overflow: scroll;
+  overflow: hidden;
   gap: 2rem;
   padding: 0 1rem;
 
